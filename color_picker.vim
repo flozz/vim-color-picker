@@ -1,12 +1,27 @@
-"Color Picker for VIM
+"Script: VIM Color Picker
+"Version: 0.1
+"Copyright: Copyright (C) 2010  Fabien Loison
+"Licence: GPLv3+ (see the "COPYING" file for more information)
+"Website: http://www.flogisoft.com/
 "
-"Need VIM with Python support
+"DEPENDENCIES:
+"  For working, this script need:
+"    * VIM 7.x with Python support
+"    * PyGTK 2.x
+"
+"INSTALL:
+"  Just copy "color_picker.vim" in your pluggin directory.
+"
+"USE:
+"  When your are in insert mode or visual mode, press the <F5> button.
+"  The color picker dialog appear, select a color and validate.
 "
 
-command ColorPicker call ColorPicker()
 
 imap <F5> <Esc>:ColorPicker<Cr>a
 vmap <F5> <Del><Esc>h:ColorPicker<Cr>a
+
+command ColorPicker call ColorPicker()
 
 function! ColorPicker()
 python << EOF
@@ -15,7 +30,7 @@ pygtk.require('2.0')
 import gtk
 import vim
 
-color_sel = gtk.ColorSelectionDialog("Select a color")
+color_sel = gtk.ColorSelectionDialog("VIM Color Picker")
 
 if color_sel.run() == gtk.RESPONSE_OK:
     color = color_sel.colorsel.get_current_color()
